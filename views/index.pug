@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  p #[em A game that bets on the score of the NBA players]
+  br
+  br
+
+  if error
+    p Error getting dynamic content.
+  else
+    p Current record of this game:
+
+    ul
+      li #[strong Players:] !{data.player_count}
+      li #[strong Game Played:] !{data.game_count}
+  br
+  br
+  h3
+    a(href='/home/player/login') Log in
+  p #[strong New Comer? ]
+    a(href='/home/player/create') Sgin up here
+

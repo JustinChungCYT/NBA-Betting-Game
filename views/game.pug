@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #[em Game History]
+
+  if error
+    p Error getting dynamic content.
+  else
+    p The game hitory has the following record counts:
+    p #[strong Total Game Played:] !{data.game_count}
+
+    ul
+      each val in data.game_history
+        li= "game_id: " + val.dataValues.game_id + ", player_id: " + val.dataValues.player_id + ", stake: " + val.dataValues.stake + ", gain: " + val.dataValues.gain

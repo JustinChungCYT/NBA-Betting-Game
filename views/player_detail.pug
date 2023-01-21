@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1 Player: #{player.dataValues.player_id}
+  p #[strong Balance:] #{player.dataValues.balance}
+  p #[strong Total Stake:] #{player.dataValues.total_stake}
+  p #[strong Total Gain:] #{player.dataValues.total_gain}
+  p #[strong Gain Rate:] #{player.dataValues.profit_percent + "%"}
+  p #[strong Golded Player:] #{player.dataValues.is_golded ? "Yes" : "No"}
+
+
+  if error
+    p Error getting dynamic content.
+  else
+    h2
+      a(href='/home/nba/' + player.dataValues.player_id) Play
+    p
+    form(method='GET' action=player.url + '/gamehistory')
+      div.form-group
+        input#playerid.form-control(type='hidden',name='playerid', required='true', value=player.dataValues.player_id )
+
+      button.btn.btn-primary(type='submit') Game History
+
+    form(method='GET' action=player.url + '/delete')
+      div.form-group
+        input#playerDelete.form-control(type='hidden',name='playerid', required='true', value=player.dataValues.player_id )
+      button.btn.btn-primary(type='submit') Delete Account

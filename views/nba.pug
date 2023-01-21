@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  h1= title
+  p Here's how the game works:
+  ol
+    li Pick an NBA player 
+    li Choose the last N games before today #{'('}the more games you pick, the higher the profit rate#{')'}
+    li You and the bot will be randomly assigned a score the player scored from one of the last n games
+    li Whoever has a higher score is the winner!
+  form(method='POST' action='/home/nba/process/' + player_id)
+    h3 Enter a player name:
+    div.form-group
+      label(for='first_name') First Name
+      input#first_name.form-control(type='text', placeholder='e.g. Luka' name='player_first_name' required='true' value='' )
+    div.form-group
+      label(for='last_name') Last Name
+      input#last_name.form-control(type='text', placeholder='e.g. Doncic' name='player_last_name', required='true', value='' )
+    div.form-group
+      - var today = new Date();
+      - var dd = String(today.getDate()).padStart(2, '0');
+      - var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      - var yyyy = today.getFullYear();
+      - today = mm + '/' + dd + '/' + yyyy
+      label(for='date')= 'Date of today: ' + today
+      input#date.form-control(type='hidden', name='date', value=today )
+    div.form-group
+      label(for='num_games') Last N games from today
+      input#num_games.form-control(type='text', placeholder='e.g. 5' name='num_games', required='true', value='' )
+    div.form-group
+      label(for='stake') How much do you want to bet?
+      input#stake.form-control(type='text', placeholder='' name='stake' required='true' value='' )
+    div.form-group
+      input#player_id.form-control(type='hidden', name='player_id', value=player_id )
+    button.btn.btn-primary(type='submit') Sumbit
+    br
+    br
+    h4
+      a(href='/home/player/detail/' + player_id) Player Status

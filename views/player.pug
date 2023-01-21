@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+
+  if error
+    p Error getting dynamic content.
+  else
+    p We have players:
+
+    ul
+      each player in data.player_list
+        li
+          a(href='/home/player/login') #{player.dataValues.player_id}

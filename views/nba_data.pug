@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+
+  if error
+    p Error getting dynamic content.
+  else
+    p= 'Player: ' + data.PlayerGameLogs[player_choice].PTS + ' pts ' + data.PlayerGameLogs[player_choice].MATCHUP + ' ' + data.PlayerGameLogs[player_choice].GAME_DATE
+    p v.s.
+    p= 'Bot: ' + data.PlayerGameLogs[bot_choice].PTS + ' pts ' + data.PlayerGameLogs[bot_choice].MATCHUP + ' ' + data.PlayerGameLogs[bot_choice].GAME_DATE
+    h5= winner
+    hr
+    h3= name
+    p= 'Avg ' + avg_pts + ' pts for the last ' + num_games + ' games.'
+
+    - var n = 0
+    ol
+      while n < num_games
+        li= data.PlayerGameLogs[n].PTS + ' pts ' + data.PlayerGameLogs[n].MATCHUP + ' ' + data.PlayerGameLogs[n++].GAME_DATE
+
+    h2
+      a(href='/home/nba/' + player_id) Play Again
