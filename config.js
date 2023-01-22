@@ -3,8 +3,8 @@ const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
     'tutorial',
-    process.env.USERNAME,
-    process.env.PASSWORD,
+    process.env.USERNAME || 'root',
+    process.env.PASSWORD || '1234567',
     {
        host: 'localhost',
        dialect: 'mysql'
