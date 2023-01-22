@@ -1,7 +1,8 @@
 # NBA-Betting-Game
 A website that allows user to bet on the data of NBA players. Written in Express.
 
-# Database Model in MySQL:
+# Database Models in MySQL:
+```
 CREATE TABLE player (
     player_id VARCHAR(10),
     passcode VARCHAR(15) NOT NULL,
@@ -36,8 +37,10 @@ CREATE TABLE contract (
 CREATE TABLE temp (
     message VARCHAR(10)
 );
+```
 
 # Triggers:
+```
 DELIMITER @@
 CREATE
     TRIGGER add_to_total_trigger
@@ -68,3 +71,4 @@ BEGIN
     WHERE player.player_id = NEW.player_id;
 END @@
 DELIMITER ;
+```
